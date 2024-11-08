@@ -18,14 +18,10 @@ namespace Lab1.DB
             
             // Чтение строки подключения из переменной окружения
             string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
-                                ?? "Host=dpg-csn50gu8ii6s73dejjrg-a;Port=5432;Database=persons_4ork;Username=program;Password=BcTFFm7lGFMtOzEW21qJs94VcOHV34Oz";
+                                ?? "Host=dpg-csn50gu8ii6s73dejjrg-a.oregon-postgres.render.com;Port=5432;Database=persons_4ork;Username=program;Password=BcTFFm7lGFMtOzEW21qJs94VcOHV34Oz";
             _connectionString = connectionString;
             Console.WriteLine($"Loaded connection string: {_connectionString}");
             Database.EnsureCreated();
-        }
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-        {
-            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
