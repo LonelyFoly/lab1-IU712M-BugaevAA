@@ -26,6 +26,8 @@ jobs:
       # Сборка проекта
       - name: Build project
         run: dotnet build net/Lab1.sln --no-restore --configuration Release
+      - name: Run xUnit tests
+        run: dotnet test net/Lab1.sln --no-build --configuration Release
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
