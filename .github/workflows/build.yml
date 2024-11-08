@@ -19,7 +19,7 @@ jobs:
 
       # Восстанавливаем зависимости
       - name: Restore dependencies
-        run: dotnet restore ./net
+        run: dotnet restore ./net/Lab1.sln
 
       # Сборка проекта
       - name: Build project
