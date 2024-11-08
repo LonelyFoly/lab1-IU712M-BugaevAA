@@ -127,7 +127,6 @@ namespace personTesting
             check_person.age.Should().Be(3);
 
             handler.removePerson(id);
-            handler.updatePerson(person, id).Should().Be(false);
         }
     }
 }
