@@ -38,6 +38,23 @@ namespace Lab1.DB
         {
             using (ApplicationContext db = getDb())
             {
+                
+                if (person.id == 0)
+                {
+                    int maxIndex = 0;
+                    var Persons = db.person.ToList();
+                    foreach (Person u in Persons)
+                    {
+                        if (u.id > maxIndex)
+                        {
+                            maxIndex = u.id;
+                        }
+                    }
+                    person.id = maxIndex + 1;
+                   
+                }
+
+
                 db.person.Add(person);
                 db.SaveChanges();
             }
@@ -60,7 +77,14 @@ namespace Lab1.DB
                 if (this_person != null)
                 {
                     //this_person.id = person.id;
-                    this_person.name = person.name;
+                    this_person.name =
+                        !string.IsNullOrEmpty(person.name) ? person.name : this_person.name ;
+                    this_person.address =
+                        !string.IsNullOrEmpty(person.address) ? person.address : this_person.address;
+                    this_person.work =
+                        !string.IsNullOrEmpty(person.work) ? person.work : this_person.work;
+                    this_person.age =
+                        (person.age!=0) ? person.age : this_person.age;
 
                     db.person.Update(this_person);
                     db.SaveChanges();

@@ -16,7 +16,7 @@ namespace Lab1.Controllers
             handler = new dbHandler(null);
         }
 
-        [HttpGet("persons/{id}")]
+        [HttpGet("/api/v1/persons/{id}")]
         public IActionResult GetPerson(int id)
         {
 
@@ -28,39 +28,33 @@ namespace Lab1.Controllers
                 return Ok(person);
         }
 
-        [HttpGet("persons/")]
+        [HttpGet("/api/v1/persons/")]
         public IActionResult GetPersons()
         {
-
-            //var person = new Person[] { new Person { id = 1, name = "John Doe" }, new Person { id = 2, name = "Joe Peach" } };
             var persons = handler.getPersons();
             return Ok(persons);
         }
-        [HttpPost("persons/")]
+        [HttpPost("/api/v1/persons/")]
         public IActionResult PostPerson([FromBody] Person person)
         {
-
-            //var person = new Person[] { new Person { id = 1, name = "John Doe" }, new Person { id = 2, name = "Joe Peach" } };
             handler.addPerson(person);
 
             return CreatedAtAction(
-            actionName: nameof(GetPerson),     // Метод, который возвращает созданный объект
-            routeValues: new { id = person.id },  // Параметр маршрута
-            value: null   // Пустое тело ответа
+            actionName: nameof(GetPerson),    
+            routeValues: new { id = person.id },  
+            value: null   
             );
         }
-        [HttpDelete("persons/{id}")]
+        [HttpDelete("/api/v1/persons/{id}")]
         public IActionResult DeletePerson(int id)
         {
             if (!handler.removePerson(id))
                 return NotFound();
             return Ok();
         }
-        [HttpPatch("persons/{id}")]
+        [HttpPatch("/api/v1/persons/{id}")]
         public IActionResult PatchPerson([FromBody] PersonUpdateDto person, int id)
         {
-
-            //var person = new Person[] { new Person { id = 1, name = "John Doe" }, new Person { id = 2, name = "Joe Peach" } };
             if (handler.updatePerson(person, id))
                 return Ok();
             else
@@ -69,12 +63,6 @@ namespace Lab1.Controllers
 
 
 
-        /*[HttpGet("persons/{personId}")]
-        public Person GetPerson(int personId)
-        {
 
-            var person = new Person { id = personId, name = "John Doe" };
-            return Ok(person);
-        }*/
     }
 }

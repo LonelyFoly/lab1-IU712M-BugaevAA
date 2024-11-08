@@ -29,7 +29,11 @@ namespace personTesting
             //
             int id = findMaxIndex()+2;
             string check_Name = "Joe";
-            handler.addPerson(new Person(id, check_Name));
+            string check_Address = "C";
+            string check_Work = "Company1";
+            int check_Age = 33;
+            handler.addPerson(new Person(id, check_Name, check_Address, check_Work,
+                check_Age));
             //
 
 
@@ -47,7 +51,11 @@ namespace personTesting
             //
             int id = findMaxIndex() + 3;
             string check_Name = "Joe";
-            handler.addPerson(new Person(id, check_Name));
+            string check_Address = "C";
+            string check_Work = "Company1";
+            int check_Age = 33;
+            handler.addPerson(new Person(id, check_Name, check_Address, check_Work,
+                check_Age));
             //
             //var person = new Person[] { new Person { id = 1, name = "John Doe" }, new Person { id = 2, name = "Joe Peach" } };
             var persons = handler.getPersons();
@@ -63,7 +71,11 @@ namespace personTesting
             //
             int id = findMaxIndex() + 4;
             string check_Name = "Joe";
-            handler.addPerson(new Person(id, check_Name));
+            string check_Address = "C";
+            string check_Work = "Company1";
+            int check_Age = 33;
+            handler.addPerson(new Person(id, check_Name, check_Address, check_Work,
+                check_Age));
             //
 
 
@@ -80,7 +92,11 @@ namespace personTesting
             //
             int id = findMaxIndex() + 5;
             string check_Name = "Joe";
-            handler.addPerson(new Person(id, check_Name));
+            string check_Address = "C";
+            string check_Work = "Company1";
+            int check_Age = 33;
+            handler.addPerson(new Person(id, check_Name, check_Address, check_Work,
+                check_Age));
             //
             handler.removePerson(id).Should().Be(true);
             handler.removePerson(id).Should().Be(false);
@@ -94,16 +110,21 @@ namespace personTesting
             //
             int id = findMaxIndex() + 6;
             string check_Name = "Joe";
-            Person old_person = new Person(id, check_Name);
+            string check_Address = "C";
+            string check_Work = "Company1";
+            int check_Age = 33;
+            Person old_person = new Person(id, check_Name, check_Address, check_Work,
+                check_Age);
             
             handler.addPerson(old_person);
 
-            PersonUpdateDto person = new PersonUpdateDto("Jail");
+            PersonUpdateDto person = new PersonUpdateDto("Jail", "a","w",3);
             handler.updatePerson(person, id);
             Person check_person = handler.getPerson(id);
 
             check_person.id.Should().Be(id);
             check_person.name.Should().Be("Jail");
+            check_person.age.Should().Be(3);
 
             handler.removePerson(id);
             handler.updatePerson(person, id).Should().Be(false);
