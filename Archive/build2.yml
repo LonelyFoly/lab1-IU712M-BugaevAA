@@ -8,27 +8,6 @@ on:
       - master
 jobs:
   build:
-    name: Building
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0'
-
-      # Восстановление зависимостей
-      - name: Restore dependencies
-        run: dotnet restore net/Lab1.sln
-
-      # Сборка проекта
-      - name: Build project
-        run: dotnet build net/Lab1.sln --no-restore --configuration Release
-
-  deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
