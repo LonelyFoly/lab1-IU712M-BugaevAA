@@ -1,23 +1,25 @@
-# Используем образ .NET SDK 8.0 для сборки
+# Используем официальный образ .NET 8 SDK для сборки
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
 
-# Копируем файлы проекта и восстанавливаем зависимости
-COPY *.sln .
-COPY Lab1/*.csproj ./Lab1/
-COPY personTesting/*.csproj ./personTesting/
-RUN dotnet restore
+# Устанавливаем рабочую директорию
+WORKDIR /src
 
-# Копируем остальные файлы и выполняем сборку
+# Копируем файл решения и восстанавливаем зависимости
+COPY ["Lab1/Lab1.csproj", "Lab1/"]
+RUN dotnet restore "Lab1/Lab1.csproj"
+
+# Копируем все исходники и публикуем приложение
 COPY . .
-WORKDIR /app/Lab1
-RUN dotnet publish -c Release -o /app/publish
-
-# Этап тестирования
+WORKDIR "/src/Lab1"
+RUN dotnet publish "Lab1.csproj" -c Release -o /app/publish
 
 
-# Используем образ ASP.NET Runtime 8.0 для запуска
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
+EXPOSE 80
+
+
 COPY --from=build /app/publish .
+
+# Указываем команду для старта приложения
 ENTRYPOINT ["dotnet", "Lab1.dll"]
