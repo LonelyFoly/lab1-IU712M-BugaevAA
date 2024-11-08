@@ -47,9 +47,9 @@
 							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"address\": \"{{$randomStreetAddress}}\",\n    \"work\": \"{{$randomCompanyName}}\",\n    \"age\": 31\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons",
+							"raw": "{{https://lab1-iu712m-bugaevaa.onrender.com}}/api/v1/persons",
 							"host": [
-								"{{baseUrl}}"
+								"{{https://lab1-iu712m-bugaevaa.onrender.coml}}"
 							],
 							"path": [
 								"api",
@@ -87,9 +87,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons/:id",
+							"raw": "{{https://lab1-iu712m-bugaevaa.onrender.com}}/api/v1/persons/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{https://lab1-iu712m-bugaevaa.onrender.com}}"
 							],
 							"path": [
 								"api",
@@ -140,9 +140,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons",
+							"raw": "{{https://lab1-iu712m-bugaevaa.onrender.com}}/api/v1/persons",
 							"host": [
-								"{{baseUrl}}"
+								"{{https://lab1-iu712m-bugaevaa.onrender.com}}"
 							],
 							"path": [
 								"api",
@@ -190,9 +190,9 @@
 							"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons/:id",
+							"raw": "{{https://lab1-iu712m-bugaevaa.onrender.com}}/api/v1/persons/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{https://lab1-iu712m-bugaevaa.onrender.com}}"
 							],
 							"path": [
 								"api",
@@ -230,9 +230,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/persons/:id",
+							"raw": "{{https://lab1-iu712m-bugaevaa.onrender.com}}/api/v1/persons/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{https://lab1-iu712m-bugaevaa.onrender.com}}"
 							],
 							"path": [
 								"api",
