@@ -56,7 +56,8 @@ namespace Lab1.Controllers
         public IActionResult PatchPerson([FromBody] PersonUpdateDto person, int id)
         {
             if (handler.updatePerson(person, id))
-                return Ok(person);
+                return Ok(new Person(id, person.name, person.address,
+                    person.work, person.age));
             else
                 return NotFound();
         }
