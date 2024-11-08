@@ -11,20 +11,6 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-# Устанавливаем .NET SDK 8.0
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-
-      # Восстанавливаем зависимости
-      - name: Restore dependencies
-        run: dotnet restore ./net/Lab1.sln
-
-      # Сборка проекта
-      - name: Build project
-        run: dotnet build ./net --configuration Release --no-restore
-
       # Публикация проекта
       - name: Publish project
         run: dotnet publish ./net --configuration Release --no-build --output ./publish
