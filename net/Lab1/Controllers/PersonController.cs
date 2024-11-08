@@ -50,13 +50,13 @@ namespace Lab1.Controllers
         {
             if (!handler.removePerson(id))
                 return NotFound();
-            return Ok();
+            return NoContent();
         }
         [HttpPatch("/api/v1/persons/{id}")]
         public IActionResult PatchPerson([FromBody] PersonUpdateDto person, int id)
         {
             if (handler.updatePerson(person, id))
-                return Ok();
+                return Ok(person);
             else
                 return NotFound();
         }
