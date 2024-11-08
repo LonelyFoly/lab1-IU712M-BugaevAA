@@ -27,6 +27,60 @@ namespace Lab1.DB
             }
 
         }
+        public bool updatePerson(PersonUpdateDto person, int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Person this_person = null ;
+                var Persons = db.person.ToList();
+                foreach (Person u in Persons)
+                {
+                    if (u.id == id)
+                    {
+                        this_person = u;
+                        break;
+                    }
+                }
+                if (this_person != null)
+                {
+                    //this_person.id = person.id;
+                    this_person.name = person.name;
+
+                    db.person.Update(this_person);
+                    db.SaveChanges();
+
+                }
+                return this_person != null;
+
+
+            }
+
+        }
+
+
+        public bool removePerson(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var Persons = db.person.ToList();
+                Person person = null;
+                foreach (Person u in Persons)
+                {
+                    if (u.id == id)
+                        person =  u;
+                }
+
+                bool cond = person != null;
+                if (cond)
+                {
+                    db.person.Remove(person);
+                    db.SaveChanges();
+                }
+
+                return cond;
+            }
+
+        }
         public Person[] getPersons()
         {
             // получение данных

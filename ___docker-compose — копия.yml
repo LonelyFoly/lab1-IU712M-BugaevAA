@@ -1,0 +1,36 @@
+version: "3"
+services:
+  postgres:
+    image: library/postgres:13
+    container_name: postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./postgres/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+
+
+  aspnet-core-app:
+    image: mcr.microsoft.com/dotnet/aspnet:7.0
+    container_name: net
+    restart: on-failure
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: ["dotnet", "Lab1.dll"]
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=localhost;Port=5432;Database=persons;User Id=program;Password=test;"
+
+volumes:
+  db-data:

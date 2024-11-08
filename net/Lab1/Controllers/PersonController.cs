@@ -46,10 +46,26 @@ namespace Lab1.Controllers
             actionName: nameof(GetPerson),     // Метод, который возвращает созданный объект
             routeValues: new { id = person.id },  // Параметр маршрута
             value: null   // Пустое тело ответа
-   );
-
-
+            );
         }
+        [HttpDelete("persons/{id}")]
+        public IActionResult DeletePerson(int id)
+        {
+            if (!handler.removePerson(id))
+                return NotFound();
+            return Ok();
+        }
+        [HttpPatch("persons/{id}")]
+        public IActionResult PatchPerson([FromBody] PersonUpdateDto person, int id)
+        {
+
+            //var person = new Person[] { new Person { id = 1, name = "John Doe" }, new Person { id = 2, name = "Joe Peach" } };
+            if (handler.updatePerson(person, id))
+                return Ok();
+            else
+                return NotFound();
+        }
+
 
 
         /*[HttpGet("persons/{personId}")]

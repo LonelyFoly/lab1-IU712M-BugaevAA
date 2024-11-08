@@ -12,4 +12,12 @@ namespace Lab1
             this.id = id;
         }
     }
+    public class PersonUpdateDto
+    {
+        public string name { get; set; }
+        public PersonUpdateDto(string name)
+        {
+            this.name = name;
+        }
+    }
 }
