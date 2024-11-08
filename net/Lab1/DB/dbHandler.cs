@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,24 @@ namespace Lab1.DB
 {
     public class dbHandler
     {
+        DbContextOptions<ApplicationContext> options;
+        public dbHandler(DbContextOptions<ApplicationContext> _option) 
+        {
+            options = _option;
+        }
+        public dbHandler()
+        {
+            options = null;
+        }
+
+
+        public ApplicationContext getDb()
+        {
+             return new ApplicationContext();
+        }
         public void addPersons(Person[] persons)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 db.person.AddRange(persons);
                 db.SaveChanges();
@@ -20,7 +36,7 @@ namespace Lab1.DB
         }
         public void addPerson(Person person)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 db.person.Add(person);
                 db.SaveChanges();
@@ -29,7 +45,7 @@ namespace Lab1.DB
         }
         public bool updatePerson(PersonUpdateDto person, int id)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 Person this_person = null ;
                 var Persons = db.person.ToList();
@@ -60,7 +76,7 @@ namespace Lab1.DB
 
         public bool removePerson(int id)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 var Persons = db.person.ToList();
                 Person person = null;
@@ -84,7 +100,7 @@ namespace Lab1.DB
         public Person[] getPersons()
         {
             // получение данных
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 // получаем объекты из бд и выводим на консоль
                 var Persons = db.person.ToList();
@@ -101,7 +117,7 @@ namespace Lab1.DB
         public Person getPerson(int id)
         {
             // получение данных
-            using (ApplicationContext db = new ApplicationContext())
+            using (ApplicationContext db = getDb())
             {
                 // получаем объекты из бд и выводим на консоль
                 var Persons = db.person.ToList();

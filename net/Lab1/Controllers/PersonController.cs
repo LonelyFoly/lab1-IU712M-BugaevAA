@@ -7,12 +7,13 @@ namespace Lab1.Controllers
 
     public class PersonController : ControllerBase
     {
-        dbHandler handler = new dbHandler();
+        dbHandler handler;
         private readonly ILogger<PersonController> _logger;
 
         public PersonController(ILogger<PersonController> logger)
         {
             _logger = logger;
+            handler = new dbHandler(null);
         }
 
         [HttpGet("persons/{id}")]

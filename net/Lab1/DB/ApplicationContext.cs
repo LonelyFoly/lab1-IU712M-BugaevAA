@@ -15,12 +15,17 @@ namespace Lab1.DB
         private readonly string _connectionString;
         public ApplicationContext()
         {
+            
             // Чтение строки подключения из переменной окружения
             string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
-                                ?? "Host=localhost;Port=5438;Database=persons;Username=program;Password=test";
+                                ?? "Host=postgres;Port=5432;Database=persons;Username=program;Password=test";
             _connectionString = connectionString;
-            //Console.WriteLine($"Loaded connection string: {_connectionString}");
+            Console.WriteLine($"Loaded connection string: {_connectionString}");
             Database.EnsureCreated();
+        }
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
