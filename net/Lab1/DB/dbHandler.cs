@@ -60,7 +60,7 @@ namespace Lab1.DB
             }
 
         }
-        public bool updatePerson(PersonUpdateDto person, int id)
+        public Person updatePerson(PersonUpdateDto person, int id)
         {
             using (ApplicationContext db = getDb())
             {
@@ -88,9 +88,9 @@ namespace Lab1.DB
 
                     db.person.Update(this_person);
                     db.SaveChanges();
-
+                    return this_person;
                 }
-                return this_person != null;
+                return null;
 
 
             }

@@ -55,9 +55,9 @@ namespace Lab1.Controllers
         [HttpPatch("/api/v1/persons/{id}")]
         public IActionResult PatchPerson([FromBody] PersonUpdateDto person, int id)
         {
-            if (handler.updatePerson(person, id))
-                return Ok(new Person(id, person.name, person.address,
-                    person.work, person.age));
+            Person response_person = handler.updatePerson(person, id);
+            if (response_person != null)
+                return Ok(response_person);
             else
                 return NotFound();
         }
