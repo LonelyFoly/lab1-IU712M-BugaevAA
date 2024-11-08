@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /net/app
 
 # Копируем файлы проекта и восстанавливаем зависимости
-COPY *.sln .
+COPY net/*.sln .
 COPY net/Lab1/*.csproj ./net/Lab1/
 COPY net/personTesting/*.csproj ./net/personTesting/
 RUN dotnet restore
