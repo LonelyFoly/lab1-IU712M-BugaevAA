@@ -7,24 +7,11 @@ namespace personTesting
 {
     public class UnitTest1
     {
-        int maxIndex = 0;
-        public int findMaxIndex()
-        {
-            dbHandler handler = new dbHandler();
-            var Persons = handler.getPersons();
-            foreach (Person u in Persons)
-            {
-                if (u.id > maxIndex)
-                {
-                    maxIndex = u.id;
-                }
-            }
-            return maxIndex;
-        }
-
+  
         [Fact]
         public void GetPerson()
         {
+            Console.WriteLine("Get Person function checking...");
             dbHandler handler = new dbHandler();
             //
             int id = findMaxIndex()+2;
@@ -41,12 +28,14 @@ namespace personTesting
             person.name.Should().Be(check_Name);
             person.id.Should().Be(id);
 
+            Console.WriteLine("\n Well done!");
             handler.removePerson(id);
         }
 
         [Fact]
         public void GetPersons()
         {
+            Console.WriteLine("Get All Existing Persons function checking...");
             dbHandler handler = new dbHandler();
             //
             int id = findMaxIndex() + 3;
@@ -62,11 +51,14 @@ namespace personTesting
 
             persons.Length.Should().BeGreaterThanOrEqualTo(1);
 
+            Console.WriteLine("\n Well done!");
             handler.removePerson(id);
         }
         [Fact]
         public void PostPerson()
         {
+
+            Console.WriteLine("Post Person function checking...");
             dbHandler handler = new dbHandler();
             //
             int id = findMaxIndex() + 4;
@@ -83,11 +75,13 @@ namespace personTesting
             person.name.Should().Be(check_Name);
             person.id.Should().Be(id);
 
+            Console.WriteLine("\n Well done!");
             handler.removePerson(id);
         }
         [Fact]
         public void DeletePerson()
         {
+            Console.WriteLine("Delete Person function checking...");
             dbHandler handler = new dbHandler();
             //
             int id = findMaxIndex() + 5;
@@ -101,11 +95,12 @@ namespace personTesting
             handler.removePerson(id).Should().Be(true);
             handler.removePerson(id).Should().Be(false);
 
+            Console.WriteLine("\n Well done!");
         }
         [Fact]
         public void PatchPerson()
         {
-            
+            Console.WriteLine("Patch Person function checking...");
             dbHandler handler = new dbHandler();
             //
             int id = findMaxIndex() + 6;
@@ -126,7 +121,22 @@ namespace personTesting
             check_person.name.Should().Be("Jail");
             check_person.age.Should().Be(3);
 
+            Console.WriteLine("\n Well done!");
             handler.removePerson(id);
+        }
+        int maxIndex = 0;
+        public int findMaxIndex()
+        {
+            dbHandler handler = new dbHandler();
+            var Persons = handler.getPersons();
+            foreach (Person u in Persons)
+            {
+                if (u.id > maxIndex)
+                {
+                    maxIndex = u.id;
+                }
+            }
+            return maxIndex;
         }
     }
 }
